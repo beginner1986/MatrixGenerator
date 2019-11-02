@@ -4,14 +4,14 @@
 #include <fstream>
 
 // range of values generated in the matrix
-constexpr auto MIN_VALUE = -5.0;
-constexpr auto MAX_VALUE = 5.0;
+constexpr auto MIN_VALUE = -1.0;
+constexpr auto MAX_VALUE = 1.0;
 
 // functions declarations
-double** allocateMatrix(size_t const m, size_t const n);
-void freeMemory(double** matrix, size_t const m, size_t const n);
-void generateValues(double** matrix, size_t const m, size_t const n);
-void saveToFile(double** const matrix, size_t const m, size_t const n);
+float** allocateMatrix(size_t const m, size_t const n);
+void freeMemory(float** matrix, size_t const m, size_t const n);
+void generateValues(float** matrix, size_t const m, size_t const n);
+void saveToFile(float** const matrix, size_t const m, size_t const n);
 
 // ************** MAIN **************
 int main()
@@ -30,7 +30,7 @@ int main()
 		std::cin >> m >> n;
 
 		// memory allocation for the matrix
-		double** matrix = allocateMatrix(m, n);
+		float** matrix = allocateMatrix(m, n);
 
 		// fill the matrix with random values
 		generateValues(matrix, m, n);
@@ -53,19 +53,19 @@ int main()
 	}
 
 	// functions definitions
-	double** allocateMatrix(size_t const m, size_t const n)
+float** allocateMatrix(size_t const m, size_t const n)
 	{
 		// allocate the memory for M x N matrix
-		double** matrix = new double*[m];
+	float** matrix = new float*[m];
 		for (size_t i = 0; i < m; i++)
 		{
-			matrix[i] = new double[n];
+			matrix[i] = new float[n];
 		}
 
 		return matrix;
 	}
 
-	void freeMemory(double** matrix, size_t const m, size_t const n)
+	void freeMemory(float** matrix, size_t const m, size_t const n)
 	{
 		// free all the memory allocated for the matrix
 		for (size_t i = 0; i < m; i++)
@@ -75,11 +75,11 @@ int main()
 		delete[] matrix;
 	}
 
-	void generateValues(double** matrix, size_t const m, size_t const n)
+	void generateValues(float** matrix, size_t const m, size_t const n)
 	{
 		// RNG setup
 		std::default_random_engine generator;
-		std::uniform_real_distribution<double> distribution(MIN_VALUE, MAX_VALUE);
+		std::uniform_real_distribution<float> distribution(MIN_VALUE, MAX_VALUE);
 
 		// generate random matrix content
 		for (size_t i = 0; i < m; i++)
@@ -91,7 +91,7 @@ int main()
 		}
 	}
 
-	void saveToFile(double** const matrix, size_t const m, size_t const n)
+	void saveToFile(float** const matrix, size_t const m, size_t const n)
 	{
 		// get filename
 		std::string fileName;
