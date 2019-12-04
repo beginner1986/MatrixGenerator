@@ -78,7 +78,7 @@ float** allocateMatrix(size_t const m, size_t const n)
 	void generateValues(float** matrix, size_t const m, size_t const n)
 	{
 		// RNG setup
-		std::default_random_engine generator;
+		std::random_device generator;
 		std::uniform_real_distribution<float> distribution(MIN_VALUE, MAX_VALUE);
 
 		// generate random matrix content
